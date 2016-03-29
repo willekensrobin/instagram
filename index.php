@@ -1,8 +1,8 @@
 <?php
-require_once('classes/header.php');
+require_once('view/header.php');
 ?>
 
 
 <?php
-require_once('classes/footer.php');
+require_once('view/footer.php');
 ?>
