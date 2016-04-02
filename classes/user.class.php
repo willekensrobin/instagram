@@ -34,7 +34,7 @@ class User {
 	
         if (!$conn->connect_errno) {
             // prepare the query, protect against SQL injection (real_escape_string)
-            $query = "INSERT INTO db_users (username,fullname, password, email) VALUES ('".$conn->real_escape_string($this->m_sUsername)."','".$this->m_sFullname."','".$this->m_sPassword."','".$this->m_sEmail. "')";
+            $query = "INSERT INTO db_users (username,fullname, password, email) VALUES ('".$conn->real_escape_string($this->m_sUsername)."','".$this->m_sFullname."','".$this->m_sPassword."','".$this->m_sEmail."')";
             // execute query on connection, returns true/false. 
             // true = success, false = fail.
             // email & password has verification so these can not be rendered. Nickname can, however. 
@@ -59,15 +59,30 @@ class User {
         if (!$conn->connect_errno) {
         	$query = "SELECT * FROM db_users WHERE username = '" . $conn->real_escape_string($p_sUsername) . "';";
             $result =$conn->query($query); //output opvangen in result
-        if ($result) {
+            
+            // Check for empty result
+            if ($result->num_rows) {
                 // $row_user makes the data readable (fetch_assoc()).
-		$row_user = $result->fetch_assoc();
-                echo "Loggedin";
-                return $row_user["password"];
+		        $row_user = $result->fetch_assoc();
+                $rowpass = $row_user['password'];
+                echo "User exists<br>";
+                if (password_verify ($p_sPassword,rtrim($rowpass))){
+                    // Correct Password
+                    echo "Password matched<br>";
+                    session_start();
+                    $_SESSION['username']=$row_user['username'];
+                    $_SESSION['user_id']=$row_user['id'];
+                    header("Location: ../index.php");
+                }else{
+                    // Wrong Password
+                    echo "Password does not match<br>";
+                }
+            }else{
+                // User does not exist
+                echo "This user does not exist";
             }
             
-        }
-        else {
+        }else{
             echo "Something went wrong" . $conn->connect_error;
         }
 

@@ -2,7 +2,6 @@
 include ("../classes/user.class.php");
 if (!empty($_POST)) {
     $login = User::login($_POST["username"], $_POST["password"]);
-    var_dump (password_verify ($_POST["password"] , '$2y$12$ULedQcs8EA05h4KONymJxeZ0tVt.m66NNW6inqRXepEULsdpMOe/G'));
 }
 
 ?>

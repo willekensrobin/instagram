@@ -108,9 +108,6 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-
-</body>
-
 		</div>
 		<!-- /.navbar-collapse -->
 	  </div>
