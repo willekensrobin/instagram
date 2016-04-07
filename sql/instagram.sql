@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 24 mrt 2016 om 10:40
+-- Gegenereerd op: 07 apr 2016 om 20:07
 -- Serverversie: 10.1.9-MariaDB
 -- PHP-versie: 5.6.15
 
@@ -89,12 +89,22 @@ CREATE TABLE `db_tags` (
 
 CREATE TABLE `db_users` (
   `id` int(11) NOT NULL,
-  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `fullname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `role` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `db_users`
+--
+
+INSERT INTO `db_users` (`id`, `username`, `fullname`, `email`, `password`, `picture`, `role`) VALUES
+(4, 'Stalin', 'Stalin Vlad', 'Somerussian@ussr.com', '$2y$12$aasfzRJIx.YMFGy3HXKKwOO5a/Zh7v6/KbL9DIOnQ4/a42ChG8hvq\n', '', 0),
+(5, 'ianhitler', 'Ian Hitler', 'Ian@MeinReich.de', '$2y$12$ULedQcs8EA05h4KONymJxeZ0tVt.m66NNW6inqRXepEULsdpMOe/G\n', '', 0),
+(6, 'test', 'test', 'test@test.be', '$2y$12$40bJyXjOnEBdzd0QQZ4bNeE4nMXfd8REOIR0tvY7EWm0O4ptdiEai\n', '', 0);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -158,7 +168,7 @@ ALTER TABLE `db_picture`
 -- AUTO_INCREMENT voor een tabel `db_users`
 --
 ALTER TABLE `db_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
