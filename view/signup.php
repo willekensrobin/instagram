@@ -1,10 +1,13 @@
 <?php
 include("../classes/user.class.php");
 if (!empty($_POST)) {
+    
+    //Wachtwoord beveiligen
+    
     $options = [
         'cost' => 12,
     ];
- $hash = password_hash($_POST["password"], PASSWORD_BCRYPT, $options)."\n";
+    $hash = password_hash($_POST["password"], PASSWORD_BCRYPT, $options)."\n";
     $user = new User($_POST["fullname"], $_POST["username"], $hash, $_POST["email"]);
     echo $user->save();
 }
